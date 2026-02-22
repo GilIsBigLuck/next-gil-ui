@@ -1,0 +1,3 @@
+module.exports=[15159,a=>{"use strict";var b=a.i(29345);function c({children:a}){return(0,b.jsxs)("html",{lang:"ko",children:[(0,b.jsx)("head",{children:(0,b.jsx)("link",{rel:"stylesheet",as:"style",crossOrigin:"anonymous",href:"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"})}),(0,b.jsx)("body",{className:"antialiased",children:a})]})}a.s(["default",()=>c,"metadata",0,{title:"Gil UI - Design System",description:"Next.js Design System Boilerplate"}])}];
+
+//# sourceMappingURL=Desktop_gil_repo_next-gil-ui_app_layout_tsx_f46d79fd._.js.map

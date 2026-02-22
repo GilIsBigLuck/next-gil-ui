@@ -1,147 +1,284 @@
 @import "tailwindcss";
+
+/* Scan components for Tailwind classes */
+@source "../../src/components/**/*.tsx";
+@source "../../app/**/*.tsx";
+
+/* Design System Tokens */
 @import "./variables.css";
 
-/* Tailwind theme configuration */
+/* ============================================
+ * Theme Configuration (Tailwind 4)
+ * Define actual values for Tailwind utilities
+ * ============================================ */
 @theme inline {
   /* Colors - Primary */
-  --color-primary-50: var(--color-primary-50);
-  --color-primary-100: var(--color-primary-100);
-  --color-primary-200: var(--color-primary-200);
-  --color-primary-300: var(--color-primary-300);
-  --color-primary-400: var(--color-primary-400);
-  --color-primary-500: var(--color-primary-500);
-  --color-primary-600: var(--color-primary-600);
-  --color-primary-700: var(--color-primary-700);
-  --color-primary-800: var(--color-primary-800);
-  --color-primary-900: var(--color-primary-900);
-  --color-primary-950: var(--color-primary-950);
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
 
   /* Colors - Secondary */
-  --color-secondary-50: var(--color-secondary-50);
-  --color-secondary-100: var(--color-secondary-100);
-  --color-secondary-200: var(--color-secondary-200);
-  --color-secondary-300: var(--color-secondary-300);
-  --color-secondary-400: var(--color-secondary-400);
-  --color-secondary-500: var(--color-secondary-500);
-  --color-secondary-600: var(--color-secondary-600);
-  --color-secondary-700: var(--color-secondary-700);
-  --color-secondary-800: var(--color-secondary-800);
-  --color-secondary-900: var(--color-secondary-900);
-  --color-secondary-950: var(--color-secondary-950);
+  --color-secondary-50: #f8fafc;
+  --color-secondary-100: #f1f5f9;
+  --color-secondary-200: #e2e8f0;
+  --color-secondary-300: #cbd5e1;
+  --color-secondary-400: #94a3b8;
+  --color-secondary-500: #64748b;
+  --color-secondary-600: #475569;
+  --color-secondary-700: #334155;
+  --color-secondary-800: #1e293b;
+  --color-secondary-900: #0f172a;
+  --color-secondary-950: #020617;
+
+  /* Colors - Gray */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f4f4f5;
+  --color-gray-200: #e4e4e7;
+  --color-gray-300: #d4d4d8;
+  --color-gray-400: #a1a1aa;
+  --color-gray-500: #71717a;
+  --color-gray-600: #52525b;
+  --color-gray-700: #3f3f46;
+  --color-gray-800: #27272a;
+  --color-gray-900: #18181b;
+  --color-gray-950: #09090b;
 
   /* Colors - Success */
-  --color-success-50: var(--color-success-50);
-  --color-success-100: var(--color-success-100);
-  --color-success-200: var(--color-success-200);
-  --color-success-300: var(--color-success-300);
-  --color-success-400: var(--color-success-400);
-  --color-success-500: var(--color-success-500);
-  --color-success-600: var(--color-success-600);
-  --color-success-700: var(--color-success-700);
-  --color-success-800: var(--color-success-800);
-  --color-success-900: var(--color-success-900);
-  --color-success-950: var(--color-success-950);
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+  --color-success-950: #052e16;
 
   /* Colors - Warning */
-  --color-warning-50: var(--color-warning-50);
-  --color-warning-100: var(--color-warning-100);
-  --color-warning-200: var(--color-warning-200);
-  --color-warning-300: var(--color-warning-300);
-  --color-warning-400: var(--color-warning-400);
-  --color-warning-500: var(--color-warning-500);
-  --color-warning-600: var(--color-warning-600);
-  --color-warning-700: var(--color-warning-700);
-  --color-warning-800: var(--color-warning-800);
-  --color-warning-900: var(--color-warning-900);
-  --color-warning-950: var(--color-warning-950);
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+  --color-warning-950: #451a03;
 
   /* Colors - Error */
-  --color-error-50: var(--color-error-50);
-  --color-error-100: var(--color-error-100);
-  --color-error-200: var(--color-error-200);
-  --color-error-300: var(--color-error-300);
-  --color-error-400: var(--color-error-400);
-  --color-error-500: var(--color-error-500);
-  --color-error-600: var(--color-error-600);
-  --color-error-700: var(--color-error-700);
-  --color-error-800: var(--color-error-800);
-  --color-error-900: var(--color-error-900);
-  --color-error-950: var(--color-error-950);
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-200: #fecaca;
+  --color-error-300: #fca5a5;
+  --color-error-400: #f87171;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+  --color-error-800: #991b1b;
+  --color-error-900: #7f1d1d;
+  --color-error-950: #450a0a;
 
-  /* Font */
-  --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Colors - Info (= Primary) */
+  --color-info-50: #eff6ff;
+  --color-info-100: #dbeafe;
+  --color-info-200: #bfdbfe;
+  --color-info-300: #93c5fd;
+  --color-info-400: #60a5fa;
+  --color-info-500: #3b82f6;
+  --color-info-600: #2563eb;
+  --color-info-700: #1d4ed8;
+  --color-info-800: #1e40af;
+  --color-info-900: #1e3a8a;
+  --color-info-950: #172554;
+
+  /* Colors - Prism */
+  --color-prism-1: #f5c8c8;
+  --color-prism-2: #c8d8f5;
+  --color-prism-3: #c8f5de;
+  --color-prism-4: #dec8f5;
+  --color-prism-5: #f5c8e5;
+
+  /* Typography */
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  /* Background & Foreground */
+  --color-background: #fafafa;
+  --color-foreground: #18181b;
 }
 
-/* Prism gradient for hover effects */
+/* ============================================
+ * Base Styles
+ * ============================================ */
+body {
+  background: #ffffff;
+  color: var(--color-gray-900);
+  font-family: var(--font-family-sans);
+}
+
+/* ============================================
+ * Prism Animation
+ * ============================================ */
+@keyframes prism-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Base prism background */
+.bg-prism {
+  background: var(--gradient-prism);
+  background-size: 300% 300%;
+  animation: prism-flow 8s ease-in-out infinite;
+}
+
+/* Prism text effect */
+.text-prism {
+  background: var(--gradient-prism-text);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: prism-flow 4s ease-in-out infinite;
+}
+
+/* Prism border wrapper */
+.prism-border {
+  background: var(--gradient-prism);
+  background-size: 300% 300%;
+  animation: prism-flow 8s ease-in-out infinite;
+  padding: 1px;
+}
+
+.prism-border > * {
+  background: white;
+}
+
+.prism-border-2 {
+  background: var(--gradient-prism);
+  background-size: 300% 300%;
+  animation: prism-flow 8s ease-in-out infinite;
+  padding: 2px;
+}
+
+.prism-border-2 > * {
+  background: white;
+}
+
+/* ============================================
+ * Prism Hover Effects
+ * ============================================ */
+
+/* Hover: show prism background with white text */
 .hover-prism {
   position: relative;
   overflow: hidden;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .hover-prism::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 182, 193, 0.9) 0%,
-    rgba(255, 218, 185, 0.9) 25%,
-    rgba(255, 255, 224, 0.9) 50%,
-    rgba(176, 226, 255, 0.9) 75%,
-    rgba(221, 160, 221, 0.9) 100%
-  );
+  background: var(--gradient-prism);
+  background-size: 300% 300%;
+  animation: prism-flow 8s ease-in-out infinite;
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 0;
 }
 
-.hover-prism:hover::before {
+
+.hover-prism:not(:disabled):hover::before {
   opacity: 1;
 }
 
-.hover-prism:hover {
+.hover-prism:not(:disabled):hover {
+  color: white;
+  border-color: transparent;
+}
+
+.hover-prism:not(:disabled):hover * {
   color: white;
 }
 
-/* Static prism background */
-.bg-prism {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 182, 193, 0.9) 0%,
-    rgba(255, 218, 185, 0.9) 25%,
-    rgba(255, 255, 224, 0.9) 50%,
-    rgba(176, 226, 255, 0.9) 75%,
-    rgba(221, 160, 221, 0.9) 100%
-  );
+/* Hover: prism border appears */
+.hover-prism-border {
+  position: relative;
+  transition: all 0.1s ease;
 }
 
-/* Text prism gradient */
-.text-prism {
-  background: linear-gradient(
-    135deg,
-    #ffb6c1 0%,
-    #ffdab9 25%,
-    #ffffe0 50%,
-    #b0e2ff 75%,
-    #dda0dd 100%
-  );
-  -webkit-background-clip: text;
+.hover-prism-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: var(--gradient-prism);
+  background-size: 300% 300%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.hover-prism-border:hover::before {
+  opacity: 1;
+  animation: prism-flow 8s ease-in-out infinite;
+}
+
+/* Hover: text becomes prism */
+.hover-text-prism {
+  transition: all 0.1s ease;
+}
+
+.hover-text-prism:hover {
+  background: var(--gradient-prism-text);
+  background-size: 200% auto;
   background-clip: text;
-  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: prism-flow 4s ease-in-out infinite;
 }
 
-/* Prism border */
-.prism-border {
-  border: 1px solid transparent;
-  background-image: linear-gradient(white, white),
-    linear-gradient(
-      135deg,
-      #ffb6c1 0%,
-      #ffdab9 25%,
-      #ffffe0 50%,
-      #b0e2ff 75%,
-      #dda0dd 100%
-    );
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
+/* ============================================
+ * Skeleton Wave Animation
+ * ============================================ */
+@keyframes skeleton-wave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-skeleton-wave {
+  background: linear-gradient(
+    90deg,
+    #e4e4e7 0%,
+    #f4f4f5 50%,
+    #e4e4e7 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-wave 1.5s ease-in-out infinite;
 }

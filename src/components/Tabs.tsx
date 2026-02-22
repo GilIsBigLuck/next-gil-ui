@@ -10,7 +10,7 @@
  * 접근성: role="tablist/tab/tabpanel", aria-selected, aria-controls, 키보드 네비게이션
  */
 
-import { createContext, useContext, useState, useRef, useEffect, ReactNode, useId, KeyboardEvent } from "react";
+import { createContext, useContext, useState, useRef, useEffect, useCallback, ReactNode, useId, KeyboardEvent } from "react";
 
 type TabsVariant = "underline" | "button";
 type TabsSize = "md" | "lg";
@@ -24,7 +24,6 @@ interface TabsContextType {
   registerTab: (value: string, element: HTMLButtonElement) => void;
   unregisterTab: (value: string) => void;
   tabValues: string[];
-  setTabValues: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const TabsContext = createContext<TabsContextType | null>(null);
@@ -43,16 +42,18 @@ export function Tabs({ defaultValue, children, className = "", variant = "underl
   const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
   const baseId = useId();
 
-  const registerTab = (value: string, element: HTMLButtonElement) => {
+  const registerTab = useCallback((value: string, element: HTMLButtonElement) => {
     tabRefs.current.set(value, element);
-  };
+    setTabValues(prev => prev.includes(value) ? prev : [...prev, value]);
+  }, []);
 
-  const unregisterTab = (value: string) => {
+  const unregisterTab = useCallback((value: string) => {
     tabRefs.current.delete(value);
-  };
+    setTabValues(prev => prev.filter(v => v !== value));
+  }, []);
 
   return (
-    <TabsContext.Provider value={{ activeTab, setActiveTab, variant, size, baseId, registerTab, unregisterTab, tabValues, setTabValues }}>
+    <TabsContext.Provider value={{ activeTab, setActiveTab, variant, size, baseId, registerTab, unregisterTab, tabValues }}>
       <div className={className}>{children}</div>
     </TabsContext.Provider>
   );
@@ -171,7 +172,7 @@ export function TabsTrigger({ value, children, disabled = false, className = "" 
   const context = useContext(TabsContext);
   if (!context) throw new Error("TabsTrigger must be used within Tabs");
 
-  const { activeTab, setActiveTab, variant, size, baseId, registerTab, unregisterTab, setTabValues } = context;
+  const { activeTab, setActiveTab, variant, size, baseId, registerTab, unregisterTab } = context;
   const isActive = activeTab === value;
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -179,15 +180,14 @@ export function TabsTrigger({ value, children, disabled = false, className = "" 
   const panelId = `${baseId}-panel-${value}`;
 
   useEffect(() => {
-    if (buttonRef.current) {
-      registerTab(value, buttonRef.current);
+    const element = buttonRef.current;
+    if (element) {
+      registerTab(value, element);
     }
-    setTabValues(prev => prev.includes(value) ? prev : [...prev, value]);
     return () => {
       unregisterTab(value);
-      setTabValues(prev => prev.filter(v => v !== value));
     };
-  }, [value, registerTab, unregisterTab, setTabValues]);
+  }, [value, registerTab, unregisterTab]);
 
   const baseStyles = "relative z-10 font-medium transition-colors";
 

@@ -1,0 +1,13 @@
+__turbopack_load_page_chunks__("/_error", [
+  "static/chunks/8afa9_next_dist_compiled_6aec2f1c._.js",
+  "static/chunks/8afa9_next_dist_shared_lib_8c07fb9a._.js",
+  "static/chunks/8afa9_next_dist_client_2981f098._.js",
+  "static/chunks/8afa9_next_dist_2c7e07b7._.js",
+  "static/chunks/8afa9_next_error_615dab29.js",
+  "static/chunks/[next]_entry_page-loader_ts_e38a51ee._.js",
+  "static/chunks/8afa9_react-dom_f1af577d._.js",
+  "static/chunks/8afa9_76637a76._.js",
+  "static/chunks/[root-of-the-server]__9898a5ce._.js",
+  "static/chunks/Desktop_gil_repo_next-gil-ui_pages__error_2da965e7._.js",
+  "static/chunks/turbopack-Desktop_gil_repo_next-gil-ui_pages__error_75991f2d._.js"
+])
